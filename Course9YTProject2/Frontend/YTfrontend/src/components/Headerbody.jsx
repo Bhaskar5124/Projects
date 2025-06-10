@@ -9,32 +9,29 @@ import { MdHome, MdSubscriptions, MdVideoLibrary, MdOutlineExplore, MdOutlineSlo
 import CallingVideos from "./CallingVideos";
 import Body from "./Body";
 import Videodetail from "./Videodetail";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Headerbody() {
     let {id} = useParams();
     let videoidnum = parseInt(id);
+    const navigate = useNavigate();
 
   let [searchText, setSearchText] = useState("");
 
-  let respApi = CallingVideos();
-  let [filterdata,setfilterdata] = useState(respApi);
-  
-    useEffect(()=>{
-      if(respApi && respApi.length){
-        setfilterdata(respApi)
-      }
-    } , [respApi]);
 
 
   function handleVideoSearch(searchText){
-    let farr = respApi.filter((fv)=>fv.title.toLowerCase().includes(searchText.toLowerCase()))
-    setfilterdata(farr);
+    if (!searchText.trim()) return;
+    navigate(`/search?q=${encodeURIComponent(searchText)}`);
   }
 
 
   function clearInput(){
     setSearchText("");
+  }
+
+  function handlehome(){
+    navigate("/");
   }
 
 
@@ -80,7 +77,7 @@ function Headerbody() {
           )}
         </div>
         <div className="pt-2 pb-4">
-          <SidebarItem icon={<MdHome size={24} />} label="Home" isSidebarOpen={isSidebarOpen} />
+          <SidebarItem icon={<MdHome size={24} onClick={handlehome} />} label="Home" onClick={handlehome} isSidebarOpen={isSidebarOpen} />
           <SidebarItem icon={<MdOutlineSlowMotionVideo size={24} />} label="Shorts" isSidebarOpen={isSidebarOpen} />
           <SidebarItem icon={<MdSubscriptions size={24} />} label="Subscriptions" isSidebarOpen={isSidebarOpen} />
           <hr className="my-3 border-gray-300" />
@@ -90,7 +87,7 @@ function Headerbody() {
       </aside>
 
       {/* Main Content */}
-      <div className={`flex-1 w-full ml-14 ${isSidebarOpen ? 'bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`}>
+      <div className={`flex-1 w-full ml-14 ${isSidebarOpen ? 'ml-36 bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`}>
         {/* Header */}
         <header className="h-14 w-full flex items-center justify-between px-0 py-0 bg-white sticky top-0 z-40">
           {/* Left: Menu & Logo */}
@@ -158,7 +155,7 @@ function Headerbody() {
         {/* Placeholder for main page content */}
 
       </div>
-      <Videodetail filterdata={filterdata} videoidnum={videoidnum}/>
+      <Videodetail videoidnum={videoidnum}/>
     </div>
   );
 };

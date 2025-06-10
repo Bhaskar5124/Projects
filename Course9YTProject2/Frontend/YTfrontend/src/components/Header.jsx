@@ -9,10 +9,13 @@ import { MdHome, MdSubscriptions, MdVideoLibrary, MdOutlineExplore, MdOutlineSlo
 import CallingVideos from "./CallingVideos";
 import Body from "./Body";
 import Search from "./Search";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
   let [activeCategory, setActiveCategory] = useState("All");
   let [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+  const [isSearchBodyOpen,setSearchBodyOpen] = useState(false);
 
   let respApi = CallingVideos();
   let [filterdata,setfilterdata] = useState(respApi);
@@ -25,8 +28,8 @@ function Header() {
 
 
   function handleVideoSearch(searchText){
-    let farr = respApi.filter((fv)=>fv.title.toLowerCase().includes(searchText.toLowerCase()))
-    setfilterdata(farr);
+    if (!searchText.trim()) return;
+    navigate(`/search?q=${encodeURIComponent(searchText)}`);
   }
 
   function handleCategoryClick(cat){
@@ -43,6 +46,10 @@ function Header() {
   function clearInput(){
     setSearchText("");
   }
+
+    function handlehome(){
+    navigate('/');
+    }
 
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -62,7 +69,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-white font-[Roboto,Arial,sans-serif] relative">
+    <div className="flex min-h-screen w-vw bg-white font-[Roboto,Arial,sans-serif] relative">
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
@@ -87,7 +94,7 @@ function Header() {
           )}
         </div>
         <div className="pt-2 pb-4">
-          <SidebarItem icon={<MdHome size={24} />} label="Home" isSidebarOpen={isSidebarOpen} />
+          <SidebarItem icon={<MdHome size={24} onClick={handlehome}/>} label="Home" isSidebarOpen={isSidebarOpen} />
           <SidebarItem icon={<MdOutlineSlowMotionVideo size={24} />} label="Shorts" isSidebarOpen={isSidebarOpen} />
           <SidebarItem icon={<MdSubscriptions size={24} />} label="Subscriptions" isSidebarOpen={isSidebarOpen} />
           <hr className="my-3 border-gray-300" />
@@ -97,12 +104,13 @@ function Header() {
       </aside>
 
       {/* Main Content */}
-      <div className={`flex-1 w-full ml-14 ${isSidebarOpen ? 'bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`}>
+      
+      <div className={`flex-1 w-full ml-14 ${isSidebarOpen ? 'ml-36 bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`}>
         {/* Header */}
-        <header className="h-26 w-full flex items-center justify-between px-0 py-2 bg-white sticky top-0 z-40 ">
+        <header className="h-26 w-full flex items-center justify-between px-0 py-2 bg-white sticky top-0 z-40">
           {/* Left: Menu & Logo */}
-          <div className="flex flex-col w-full ">
-                <div className="h-14 w-full flex items-center justify-between px-4 py-2 bg-white sticky top-0 z-40 ">
+          <div className="flex flex-col w-full">
+                <div className="h-14 w-full flex items-center justify-between px-4 py-2 bg-white sticky top-0 z-40">
                       <div className="flex items-center gap-4">
 
                         {!isSidebarOpen && (
@@ -113,9 +121,8 @@ function Header() {
                           />
                         )}
                       </div>
-                    
-                      <Search />
-                      {/* Center: Search Bar
+                  
+                      {/* Center: Search Bar */}
                       <div className="flex items-center flex-1 max-w-2xl mx-4">
                         <div className="flex w-full">
                           <input
@@ -128,7 +135,7 @@ function Header() {
                           {searchText && (
                             <button
                               onClick={clearInput}
-                              className="h-16 w-16 absolute top-0 right-95 text-gray-500 hover:text-black"
+                              className="h-10 w-8 flex justify-center items-center absolute top-2 right-104 text-gray-500 hover:text-black"
                             >
                               <IoCloseOutline className="h-10 w-10"/>
                             </button>
@@ -137,11 +144,12 @@ function Header() {
                           <button onClick={()=>{handleVideoSearch(searchText)}} className="px-4 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full flex items-center justify-center hover:bg-gray-200">
                             <CiSearch className="w-6 h-6 text-black" />
                           </button>
+                          
                         </div>
                         <button className="flex justify-center items-center w-11 h-10 ml-3 p-0 bg-gray-100 rounded-full hover:bg-gray-200">
                           <IoMdMic className="w-6 h-5 text-black rounded-full" />
                         </button>
-                      </div> */}
+                      </div> 
                     
                       {/* Right: Icons */}
                       <div className="flex items-center gap-4">
@@ -182,7 +190,7 @@ function Header() {
         {/* Placeholder for main page content */}
 
       </div>
-      <Body filterdata={filterdata}/>
+      <Body className={`${isSidebarOpen ? 'bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`} filterdata={filterdata}/>
     </div>
   );
 };

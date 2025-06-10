@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Videodetail from './components/Videodetail.jsx'
 import Header from './components/Header.jsx'
 import Headerbody from './components/Headerbody.jsx'
+import Search from './components/Search.jsx'
 
 const ytrouter = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const ytrouter = createBrowserRouter([
       {
         path:"/",
         element:<Header />,
+      },
+      {
+        path:"/search",
+        element:<Search />,
       },
       {
         path:"/video/:id",
