@@ -183,7 +183,7 @@ function Search() {
                             </button>
                           )}
                           
-                          <button onClick={()=>{handleVideoSearch(searchQuery)}} className="px-4 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full flex items-center justify-center hover:bg-gray-200">
+                          <button onClick={()=>handleVideoSearch(searchQuery)} className="px-4 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full flex items-center justify-center hover:bg-gray-200">
                             <CiSearch className="w-6 h-6 text-black" />
                           </button>
                         </div>

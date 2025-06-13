@@ -2,8 +2,8 @@ import {MongoClient} from 'mongodb';
 
 const mongoUrl = 'mongodb://127.0.0.1:27017/'; 
 const dbName = 'youtubeapp'; 
-const collectionName = 'videos'; 
-export async function displayAllVideos(req,res){
+const collectionName = 'comments'; 
+export async function displayAllComments(req,res){
    try {
      const client = new MongoClient(mongoUrl);
      await client.connect();

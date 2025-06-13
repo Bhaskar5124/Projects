@@ -61,7 +61,8 @@ function Videodetail({videoidnum}) {
           return(
             <div className="flex flex-col md:flex-row p-4 gap-6 bg-white min-h-screen">
 			{/* Main Video Section */}
-      <div className="flex-1 max-w-[950px]">
+      <div className="flex-1 max-w-[950px] border">
+
         <div className="w-full rounded-xl overflow-hidden">
           <iframe
             className="w-full h-85"
@@ -74,6 +75,7 @@ function Videodetail({videoidnum}) {
         </div>
 
         <div className="mt-4">
+
           <h1 className="text-xl font-bold">
             {video.title}
           </h1>
@@ -106,13 +108,20 @@ function Videodetail({videoidnum}) {
             </div>
           </div>
 
-          <div className="mt-4 text-gray-700 text-sm">
+          <div className="mt-4 text-gray-700 text-sm bg-gray-200 rounded-2xl p-4">
             <p>
               {formatNumberWithKMB(video.views)} views  •  {getTimeAgo(video.uploadDate)}  •  #maxamini #standupcomedy #convert
             </p>
             <p>
               {video.description}
             </p>
+          </div>
+        </div>
+
+        <div className='m-4 flex flex-col'>
+          <h1 className='text-xl font-bold'>{video.comments.length} Comments</h1>
+          <div>
+            <img/>
           </div>
         </div>
       </div>

@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import commentModel from "./commentSchema.js";
-
-
 
 const videoSchema = new mongoose.Schema({
   videoId: {
@@ -58,9 +55,11 @@ const videoSchema = new mongoose.Schema({
   },
   comments:{
     type:Array,
-  },
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'comments'
+    },
 });
 
-const videoModel = mongoose.model('videos', videoSchema);
+const videos = mongoose.model('videos', videoSchema);
 
-export default videoModel;
+export default videos;

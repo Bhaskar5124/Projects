@@ -1,14 +1,16 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { seedCommentDB, seedVideoDB } from './seedData.js';
+import { seedCommentDB, seedUserDB, seedVideoDB } from './seedData.js';
 import cors from 'cors';
 import { videoRoutes } from './routes/videoRoutes.js';
+import { userRoutes } from './routes/userRoutes.js';
+import { PORT } from './config/server.js';
 
 //defining the app
 const app = express();
 
 //defining the port and sending the connected response
-const PORT = 8050;
+
 app.listen(PORT, ()=>{
     console.log(`Server Connected at PORT: ${PORT}`);
 });
@@ -28,6 +30,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/youtubeapp')
 //Seeding Data to Databases
 //seedVideoDB();
 //seedCommentDB();
+//seedUserDB();
 
 //middlewares
 app.use(express.json());
@@ -36,3 +39,4 @@ app.use(cors());
 
 //Routes Calling
 videoRoutes(app);
+userRoutes(app);

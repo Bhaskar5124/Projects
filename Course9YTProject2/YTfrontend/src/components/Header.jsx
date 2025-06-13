@@ -4,28 +4,43 @@ import { IoMdMic } from "react-icons/io";
 import { FaBell, FaVideo } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
+import { AiTwotonePrinter } from "react-icons/ai";
+import { LiaSignInAltSolid,LiaSignOutAltSolid } from "react-icons/lia";
+import { ImProfile } from "react-icons/im";
 import { IoCloseOutline } from "react-icons/io5";
+import { LuPlus } from "react-icons/lu";
 import { MdHome, MdSubscriptions, MdVideoLibrary, MdOutlineExplore, MdOutlineSlowMotionVideo } from "react-icons/md";
 import CallingVideos from "./CallingVideos";
 import Body from "./Body";
-import Search from "./Search";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Login from "./Login";
 
 function Header() {
   let [activeCategory, setActiveCategory] = useState("All");
   let [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
-  const [isSearchBodyOpen,setSearchBodyOpen] = useState(false);
-
   let respApi = CallingVideos();
   let [filterdata,setfilterdata] = useState(respApi);
-  
-    useEffect(()=>{
-      if(respApi && respApi.length){
-        setfilterdata(respApi)
-      }
-    } , [respApi]);
+  let [isVisible, setIsVisible] = useState(false);
+  let [showProfileMenu, setShowProfileMenu] = useState(false);
+  let [showCreateMenu, setshowCreateMenu] = useState(false);
+  let token = localStorage.getItem("token")
+  let useravatar = localStorage.getItem("useravatar");
 
+  useEffect(()=>{
+    if(respApi && respApi.length){
+      setfilterdata(respApi)
+    }
+  } , [respApi]);
+
+  function openModal() {
+    setIsVisible(true);
+    setShowProfileMenu(false);
+  }
+
+  function closeModal() {
+    setIsVisible(false);
+  }
 
   function handleVideoSearch(searchText){
     if (!searchText.trim()) return;
@@ -47,9 +62,24 @@ function Header() {
     setSearchText("");
   }
 
-    function handlehome(){
+  function handlehome(){
     navigate('/');
-    }
+  }
+
+  function handleProfilewindow(){
+    setShowProfileMenu((prev) => !prev);
+  }
+
+  function handleCreateWindow(){
+    setshowCreateMenu((prev) => !prev);
+  }
+
+  function handleLogout(){
+    setShowProfileMenu(false);
+    localStorage.removeItem("token")
+    localStorage.removeItem("useravatar");
+    navigate('/');
+  }
 
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -58,6 +88,8 @@ function Header() {
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   const handleClickOutside = (e) => {
+    // if(showProfileMenu==true){setShowProfileMenu(false);}
+    // if(showCreateMenu==true){setshowCreateMenu(false);}
     if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
       setIsSidebarOpen(false);
     }
@@ -135,7 +167,7 @@ function Header() {
                           {searchText && (
                             <button
                               onClick={clearInput}
-                              className="h-10 w-8 flex justify-center items-center absolute top-2 right-104 text-gray-500 hover:text-black"
+                              className="h-10 w-8 flex justify-center items-center absolute top-2 right-90 text-gray-500 hover:text-black"
                             >
                               <IoCloseOutline className="h-10 w-10"/>
                             </button>
@@ -153,15 +185,33 @@ function Header() {
                     
                       {/* Right: Icons */}
                       <div className="flex items-center gap-4">
-                        <button className="flex justify-center items-center w-10 h-10 hover:bg-gray-200 rounded-full">
-                            <FaVideo className="w-5 h-5 text-gray-700 cursor-pointer " />
-                        </button>
-                        <button className="flex justify-center items-center w-10 h-10 hover:bg-gray-200 rounded-full">
-                            <FaBell className="w-5 h-5 text-gray-700 cursor-pointer hover:bg-gray-200" />
-                        </button>
-                        <button className="flex justify-center items-center w-10 h-10 hover:bg-gray-200 rounded-full">
-                            <CgProfile className="w-7 h-7 text-gray-700 cursor-pointer hover:bg-gray-200" />
-                        </button>
+                        { token ? 
+                          <>
+                            <button onClick={handleCreateWindow} className="flex justify-center items-center cursor-pointer w-26 h-10 bg-gray-100 hover:bg-gray-200 rounded-4xl">
+                              <LuPlus className="mr-2"/> Create
+                            </button>
+                            {showCreateMenu && <div className="h-20 w-40 flex flex-col justify-start items-center bg-gray-100 absolute top-14 right-18 rounded-2xl shadow">
+                              <button className="h-10 w-40 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200">Create Channel</button></div>}
+
+                            <button className="flex justify-center items-center w-10 h-10 hover:bg-gray-200 rounded-full">
+                                <FaBell className="w-5 h-5 text-gray-700 cursor-pointer hover:bg-gray-200" />
+                            </button>
+                            <button className="flex justify-center items-center w-10 h-10 hover:bg-gray-200 rounded-full">
+                                <img src={useravatar} onClick={handleProfilewindow} className="w-7 h-7 rounded-full text-gray-700 cursor-pointer hover:bg-gray-200" />
+                            </button>
+                            {showProfileMenu && <div className="h-30 w-30 flex flex-col justify-start items-center  bg-gray-100 absolute top-14 right-4 rounded-2xl shadow">
+                            <button onClick={handleLogout} className="h-10 w-30 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200"><LiaSignOutAltSolid className="w-7 h-7 text-gray-700 m-1" />SignOut</button>
+                            <button className="h-10 w-30 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200"><ImProfile className="w-7 h-7 text-gray-700 m-1" />Profile</button>
+                            </div>}
+
+                          </>
+                          :
+                          <>
+                            <button onClick={openModal} className="p-2 w-24 h-10 font-semibold text-sm text-blue-600 border border-gray-200 flex justify-center items-center hover:bg-blue-200 rounded-3xl">
+                                <CgProfile className="m-1 w-5 h-5 cursor-pointer" /> Sign in
+                            </button>
+                          </>
+                        }
                       </div>
                 </div>
 
@@ -191,6 +241,7 @@ function Header() {
 
       </div>
       <Body className={`${isSidebarOpen ? 'bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`} filterdata={filterdata}/>
+       <Login isVisible={isVisible} onClose={closeModal} />
     </div>
   );
 };
