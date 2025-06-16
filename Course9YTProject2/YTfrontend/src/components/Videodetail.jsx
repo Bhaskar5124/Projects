@@ -6,8 +6,88 @@ import { FaThumbsUp, FaThumbsDown, FaShare, FaBell } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Headerbody from './Headerbody';
 import CallingVideos from './CallingVideos';
+import { CgProfile } from "react-icons/cg";
+import { MdDelete,MdEdit } from "react-icons/md";
 
 function Videodetail({videoidnum}) {
+
+let useravatar = localStorage.getItem("useravatar");
+let username = localStorage.getItem("username");
+let userid = localStorage.getItem("userid");
+
+
+let [loginUserComment, setloginUserComment] = useState("");
+
+        const apichannels = "http://localhost:8050/channels";
+        let [channeldata,setchanneldata] = useState([])
+        useEffect(()=>{
+            async function Calling() {
+                let resp = await axios.get(apichannels);
+                setchanneldata(resp.data);
+            }
+            Calling();
+        },[])
+        let fChannels = channeldata.filter((channel)=>channel.userIdOwner==userid);
+        console.log("fChannels",fChannels);
+
+   const apivideo = "http://localhost:8050/videodata";
+   let [videodata,setvideosdata] = useState([])
+   useEffect(()=>{
+       async function Calling() {
+           let resp = await axios.get(apivideo);
+           setvideosdata([resp.data[videoidnum]]);
+       }
+       Calling();
+   },[])
+ console.log("ClickedVideodata",videodata);
+
+   const apicomment = "http://localhost:8050/comments";
+   let [commentdata,setcommentdata] = useState([])
+   useEffect(()=>{
+       async function Calling() {
+           let resp = await axios.get(apicomment);
+           setcommentdata(resp.data);
+       }
+       Calling();
+   },[])
+   let fCommentsofVideo = commentdata.filter((comment)=>comment.videoId==videodata[0]._id)
+   console.log("fcd",fCommentsofVideo);
+
+   function handleDeleteComment(){
+
+   }
+
+function handleLogoutComment(loginUserComment){
+  if (!loginUserComment.trim()){return;}
+  else{alert("Login Needed to Comment");}
+}
+
+
+
+function handleComment(loginUserComment,setloginUserComment,username,userid){
+  setloginUserComment("");
+  if (!loginUserComment.trim()){return;}
+      const response = fetch("http://localhost:8050/newcomment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text:loginUserComment,
+        videoId:videodata[0]._id,
+        userId:userid,
+        commentedUserAvatar:useravatar,
+        commentedUserName:username,
+        timestamp: Date.now,
+      })
+    })
+    const result = response.then( (data)=> data.json() )
+    result.then((data)=>{
+        console.log(data, "data")
+      alert("Comment Added succesfully");
+    })
+}
+
    //function to format views as shown on site 
   function formatNumberWithKMB(number) {
     if (number >= 1000000000){
@@ -44,16 +124,7 @@ function Videodetail({videoidnum}) {
   return `${years} year${years > 1 ? "s" : ""} ago`;
   }
 
-   const api = "http://localhost:8050/videodata";
-   let [videodata,setvideosdata] = useState([])
-   useEffect(()=>{
-       async function Calling() {
-           let resp = await axios.get(api);
-           setvideosdata([resp.data[videoidnum]]);
-       }
-       Calling();
-   },[])
- console.log(videodata);
+
   return (
     <Fragment>
 	<main className="flex flex-wrap h-full/auto w-306/auto p-4 absolute top-14 left-14">
@@ -61,11 +132,11 @@ function Videodetail({videoidnum}) {
           return(
             <div className="flex flex-col md:flex-row p-4 gap-6 bg-white min-h-screen">
 			{/* Main Video Section */}
-      <div className="flex-1 max-w-[950px] border">
+      <div className="flex-1 w-170 border border-red-500">
 
         <div className="w-full rounded-xl overflow-hidden">
           <iframe
-            className="w-full h-85"
+            className="w-full h-95"
             src={video.videoUrl}
             title="Video player"
             frameBorder="0"
@@ -89,7 +160,11 @@ function Videodetail({videoidnum}) {
               />
               <div>
                 <p className="font-semibold">{video.channelName} <span className="text-gray-500 text-sm ml-1">✔</span></p>
-                <p className="text-sm text-gray-500">2.1M subscribers</p>
+                {fChannels.length!=0 ?fChannels.map((channel)=>{return(
+                  <p className="text-sm text-gray-500">{channel.subscribers} subscribers</p>
+                )}): 
+                  <p className="text-sm text-gray-500">221K subscribers</p>}
+                      
               </div>
               <button className="bg-black text-white font-semibold px-4 py-1 rounded-full ml-4">
                 Subscribe
@@ -119,7 +194,42 @@ function Videodetail({videoidnum}) {
         </div>
 
         <div className='m-4 flex flex-col'>
-          <h1 className='text-xl font-bold'>{video.comments.length} Comments</h1>
+          <h1 className='text-xl font-bold'>{fCommentsofVideo.length} Comments</h1>
+          <div className='h-16 w-full flex justify-between items-center'>
+            {useravatar ? <img className='h-12 w-12 rounded-full mr-2' src={useravatar} />: <CgProfile  className='h-12 w-12 rounded-full mr-2'/>}
+            <input 
+              type="text" 
+              placeholder='Add a comment'
+              value={loginUserComment}
+              onChange={(e)=>setloginUserComment(e.target.value)}
+              className='h-12 w-110 border-b border-gray-300 focus:border-b'/>
+              
+            {useravatar ?
+             <button onClick={()=>handleComment(loginUserComment,setloginUserComment,username,userid)} className='m-1 h-8 w-20 font-semibold text-sm rounded-xl bg-gray-100 hover:border-r-gray-200'>Comment</button>:
+             <button onClick={()=>handleLogoutComment(loginUserComment)} className='m-1 h-8 w-20 font-semibold text-sm rounded-xl bg-gray-100 hover:border-r-gray-200'>Comment</button>}
+          </div>
+          {fCommentsofVideo.map((comment,index)=>{
+            return(
+            <div className='h-16 w-full flex justify-between items-center'>
+              <div className='flex'>
+                <img className='h-12 w-12 rounded-full mr-2' src={comment.commentedUserAvatar}></img>
+                <div className='flex flex-col'>
+                  <div className='flex'>
+                    <h1 className='font-bold text-sm'>@{comment.commentedUserName}</h1>
+                    <h1 className='font-medium text-sm text-gray-600 ml-3'>{getTimeAgo(comment.timestamp)}</h1>
+                  </div>
+                  <p>{comment.text}</p>
+                </div>
+              </div>
+
+              <div className='h-16 w-8 flex flex-col'>
+                <button onClick={()=>handleDeleteComment()} className='h-8 w-8 rounded-full flex justify-center items-center bg-gray-100 hover:bg-gray-200'><MdDelete/></button>
+                <button className='h-8 w-8 rounded-full flex justify-center items-center bg-gray-100 hover:bg-gray-200'><MdEdit/></button>
+              </div>
+            </div>
+            )
+          })}
+
           <div>
             <img/>
           </div>

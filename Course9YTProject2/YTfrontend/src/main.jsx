@@ -8,6 +8,7 @@ import Videodetail from './components/Videodetail.jsx'
 import Header from './components/Header.jsx'
 import Headerbody from './components/Headerbody.jsx'
 import Search from './components/Search.jsx'
+import Channel from './components/Channel.jsx'
 
 const ytrouter = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const ytrouter = createBrowserRouter([
       {
         path:"/video/:id",
         element:<Headerbody/>,
+      },
+      {
+        path:"/channel",
+        element:<Channel />,
       },
     ]
 

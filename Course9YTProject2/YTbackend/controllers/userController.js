@@ -2,13 +2,24 @@ import users from "../models/userSchema.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET_KEY } from '../config/server.js';
+import cloudinary from '../config/cloudinaryconfig.js';
+
+
 
 
 
 //User registration
 export async function register(req,res){
     try{
+        let result = {};
+        
         let {avatar,userName,email,password} = req.body;
+
+
+        // Upload avatar to Cloudinary
+          result = await cloudinary.uploader.upload(avatar,{folder:"userimages"});
+        
+
         users.findOne({email})
         .then((data)=>{
             if(data){
@@ -16,7 +27,7 @@ export async function register(req,res){
             }
             else{
                 users.create({
-                    avatar,
+                    avatar: result.secure_url,
                     userName,
                     email,
                     password: bcrypt.hashSync(password, 10)
@@ -46,9 +57,10 @@ export async function login(req,res){
             const token = jwt.sign({data}, JWT_SECRET_KEY , {expiresIn:'60m'});
 
             return res.status(200).json({
-                message : console.log(`Welcome ${data.userName}`),
+                message : `Welcome ${data.userName}`,
                 user : {
-                    avatar:data.avatar,
+                    _id: data._id,
+                    avatar: data.avatar,
                     email: data.email,
                     username: data.userName
                 },

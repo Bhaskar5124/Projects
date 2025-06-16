@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 function Login(props) {
@@ -7,7 +8,34 @@ function Login(props) {
   const [isSignUp, setIsSignUp] = useState(true);
   const [avatar, setAvatar] = useState("");
 
-  function handleRegister() {
+
+ function handleusername(e){
+  setuserName(e.target.value);
+ }
+
+ function handleemail(e){
+  setEmail(e.target.value);
+ }
+
+ function handlepassword(e){
+  setPassword(e.target.value);
+ }
+
+   function handleimage(e){
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = ()=>{
+      setAvatar(reader.result);
+    }
+     
+  }
+
+
+
+
+  async function handleRegister() {
+
     const response = fetch("http://localhost:8050/register", {
       method: "POST",
       headers: {
@@ -46,13 +74,16 @@ function Login(props) {
     })
     const result = response.then( (data)=> data.json() )
     result.then((data)=>{
-      alert("Login successfully");
-      localStorage.setItem("useravatar", data.user.avatar)
-      localStorage.setItem("token" , data.AccessToken)
-      setuserName("")
-      setPassword("")
-      setEmail("")
-      props.onClose();
+        alert(data.message);
+        localStorage.setItem("userid",data.user._id);
+        localStorage.setItem("username",data.user.username);
+        localStorage.setItem("useravatar", data.user.avatar);
+        localStorage.setItem("token" , data.AccessToken);
+        setuserName("");
+        setPassword("");
+        setEmail("");
+        props.onClose();
+
     })
 
   }
@@ -100,14 +131,15 @@ function Login(props) {
                 <div>
 
                   <div className="mt-4">
-                    <label className="block mb-1 text-white text-sm">Paste Avatar Url</label>
+                    <label className="block mb-1 text-white text-sm">Upload Avatar</label>
+
                     <input
-                      type="text"
-                      placeholder="Paste image URL"
-                      value={avatar.startsWith('http') ? avatar : ''}
-                      onChange={(e) => setAvatar(e.target.value)}
-                      className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleimage}
+                      className="block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded mb-2"
                     />
+
                   </div>
 
 
@@ -125,7 +157,7 @@ function Login(props) {
                     value={userName}
                     className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Enter your name"
-                    onChange={(e) => setuserName(e.target.value)}
+                    onChange={handleusername}
                   />
                 </div>
               )}
@@ -145,7 +177,7 @@ function Login(props) {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name12@company.com"
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleemail}
                 />
               </div>
               <div>
@@ -163,7 +195,7 @@ function Login(props) {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handlepassword}
                 />
               </div>
               <div className="flex justify-between">

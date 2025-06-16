@@ -5,15 +5,18 @@ import { FaBell, FaVideo } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { AiTwotonePrinter } from "react-icons/ai";
-import { LiaSignInAltSolid,LiaSignOutAltSolid } from "react-icons/lia";
+import { LiaSignOutAltSolid } from "react-icons/lia";
 import { ImProfile } from "react-icons/im";
 import { IoCloseOutline } from "react-icons/io5";
 import { LuPlus } from "react-icons/lu";
+import Login from "./Login";
 import { MdHome, MdSubscriptions, MdVideoLibrary, MdOutlineExplore, MdOutlineSlowMotionVideo } from "react-icons/md";
 import CallingVideos from "./CallingVideos";
 import Body from "./Body";
-import { useNavigate } from "react-router-dom";
-import Login from "./Login";
+import { Link, useNavigate } from "react-router-dom";
+import Channelform from "./Channelform";
+import axios from "axios";
+
 
 function Header() {
   let [activeCategory, setActiveCategory] = useState("All");
@@ -24,8 +27,10 @@ function Header() {
   let [isVisible, setIsVisible] = useState(false);
   let [showProfileMenu, setShowProfileMenu] = useState(false);
   let [showCreateMenu, setshowCreateMenu] = useState(false);
+  let [createchannelclicked,setcreatechannelclicked] = useState(false);
   let token = localStorage.getItem("token")
   let useravatar = localStorage.getItem("useravatar");
+  let userid = localStorage.getItem("userid");
 
   useEffect(()=>{
     if(respApi && respApi.length){
@@ -33,6 +38,22 @@ function Header() {
     }
   } , [respApi]);
 
+      const apichannels = "http://localhost:8050/channels";
+    let [channeldata,setchanneldata] = useState([])
+    useEffect(()=>{
+        async function Calling() {
+            let resp = await axios.get(apichannels);
+            setchanneldata(resp.data);
+        }
+        Calling();
+    },[])
+    let fChannels = channeldata.filter((channel)=>channel.userIdOwner==userid);
+
+
+  function handlecreatechannel(){
+    setcreatechannelclicked((prev)=>!prev);
+    setshowCreateMenu(false);
+  }
   function openModal() {
     setIsVisible(true);
     setShowProfileMenu(false);
@@ -68,14 +89,28 @@ function Header() {
 
   function handleProfilewindow(){
     setShowProfileMenu((prev) => !prev);
+    setshowCreateMenu(false);
   }
 
   function handleCreateWindow(){
     setshowCreateMenu((prev) => !prev);
+    setShowProfileMenu(false);
+  }
+
+  function handleprofileview(){
+    if(fChannels.length!=0){
+      navigate("/channel");
+    }
+    else{
+      alert("Not Created Channel yet!")
+    }
   }
 
   function handleLogout(){
     setShowProfileMenu(false);
+    localStorage.removeItem("channelname");
+    localStorage.removeItem("username");
+    localStorage.removeItem("userid");
     localStorage.removeItem("token")
     localStorage.removeItem("useravatar");
     navigate('/');
@@ -167,7 +202,7 @@ function Header() {
                           {searchText && (
                             <button
                               onClick={clearInput}
-                              className="h-10 w-8 flex justify-center items-center absolute top-2 right-90 text-gray-500 hover:text-black"
+                              className="h-10 w-8 flex justify-center items-center absolute top-2 left-200 text-gray-500 hover:text-black"
                             >
                               <IoCloseOutline className="h-10 w-10"/>
                             </button>
@@ -187,11 +222,13 @@ function Header() {
                       <div className="flex items-center gap-4">
                         { token ? 
                           <>
+                            
                             <button onClick={handleCreateWindow} className="flex justify-center items-center cursor-pointer w-26 h-10 bg-gray-100 hover:bg-gray-200 rounded-4xl">
                               <LuPlus className="mr-2"/> Create
                             </button>
+                            
                             {showCreateMenu && <div className="h-20 w-40 flex flex-col justify-start items-center bg-gray-100 absolute top-14 right-18 rounded-2xl shadow">
-                              <button className="h-10 w-40 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200">Create Channel</button></div>}
+                              <button onClick={handlecreatechannel} className="h-10 w-40 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200">Create Channel</button></div>}
 
                             <button className="flex justify-center items-center w-10 h-10 hover:bg-gray-200 rounded-full">
                                 <FaBell className="w-5 h-5 text-gray-700 cursor-pointer hover:bg-gray-200" />
@@ -201,7 +238,7 @@ function Header() {
                             </button>
                             {showProfileMenu && <div className="h-30 w-30 flex flex-col justify-start items-center  bg-gray-100 absolute top-14 right-4 rounded-2xl shadow">
                             <button onClick={handleLogout} className="h-10 w-30 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200"><LiaSignOutAltSolid className="w-7 h-7 text-gray-700 m-1" />SignOut</button>
-                            <button className="h-10 w-30 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200"><ImProfile className="w-7 h-7 text-gray-700 m-1" />Profile</button>
+                            <button onClick={handleprofileview} className="h-10 w-30 m-2 flex justify-center items-center cursor-pointer hover:bg-gray-200"><ImProfile className="w-7 h-7 text-gray-700 m-1" />Profile</button>
                             </div>}
 
                           </>
@@ -241,7 +278,8 @@ function Header() {
 
       </div>
       <Body className={`${isSidebarOpen ? 'bg-black/30 backdrop-invert backdrop-opacity-8' : 'bg-white'}`} filterdata={filterdata}/>
-       <Login isVisible={isVisible} onClose={closeModal} />
+      <Login isVisible={isVisible} onClose={closeModal} />
+      {createchannelclicked && <Channelform/>}
     </div>
   );
 };

@@ -1,3 +1,6 @@
+import { displayAllComments, newComment } from "../controllers/commentController.js";
+
 export function commentsRoutes(app){
-    app.get('/comments', displ)
+    app.post('/newcomment', newComment);
+    app.get('/comments', displayAllComments);
 }

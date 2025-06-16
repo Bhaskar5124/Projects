@@ -7,9 +7,13 @@ const channelSchema = new mongoose.Schema({
       trim: true
     },
     owner: {
-      type:mongoose.Schema.Types.ObjectId,
-      ref: 'users',
-      required: true
+      type:String,
+      // type:mongoose.Schema.Types.ObjectId,
+      // ref: 'users',
+      // required: true
+    },
+    userIdOwner:{
+      type:String,
     },
     description: {
       type: String,
@@ -19,12 +23,13 @@ const channelSchema = new mongoose.Schema({
     },
     subscribers: {
       type: Number,
-      default: 0
+      default: 0,
     },
-    videos: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'videos' // here we set the reference to video collection.
-    }
+    // videos: {
+    //   type:Array,
+    //     //type:mongoose.Schema.Types.ObjectId,
+    //     //ref:'videos' // here we set the reference to video collection.
+    // }
 });
 
 

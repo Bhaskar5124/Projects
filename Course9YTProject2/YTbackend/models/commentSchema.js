@@ -15,6 +15,12 @@ const commentSchema = new mongoose.Schema({
         ref: 'users', // reference to users collection for population
         required:true
     },
+    commentedUserAvatar:{
+        type:String,
+    },
+    commentedUserName:{
+        type:String,
+    },
     timestamp:{
         type:Date,
         default: Date.now // sets default timestamp to current time
