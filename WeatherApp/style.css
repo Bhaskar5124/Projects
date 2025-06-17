@@ -1,0 +1,36 @@
+/**{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}*/
+
+/* body{
+color: white;
+} */
+
+.defaultweather{
+    background-image: linear-gradient(135deg,cornsilk, cornflowerblue);
+    border-radius: 20px;
+}
+
+.day{
+    color: black;
+    background-image: url("imgs/day3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.night{
+    span{
+        color: white;
+    }
+    color: white;
+    background-image: url("imgs/nightfinal.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
