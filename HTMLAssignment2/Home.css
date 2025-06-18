@@ -1,0 +1,370 @@
+/*-------COMMON HEADER INFO START--------------------------------*/
+
+body{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    color:rgb(224, 222, 222);
+    background-color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#siten{
+    margin: 0;
+    position: fixed;
+    top:0;
+    background-color: rgb(20,20,20);
+    width: 100%;
+    height:60px;
+}
+
+#sitename{
+    position: fixed;
+    top: 0px;
+    margin: 0;
+    width: 100%;
+    height:60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    vertical-align: middle;
+    color: teal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 34px;
+}
+
+#whiteborder{
+    position: fixed;
+    top: 0px;
+    margin: 0;
+    width: 100%;
+    height:60px;
+    border-bottom: 2px rgb(202, 202, 202) solid;  
+
+}
+
+#navbar{
+    position:fixed;
+    top:62px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
+    width: 100%;
+    height: 40px;
+    background-color: rgb(20,20,20);
+}
+
+
+.subhead{
+    margin: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+   
+}
+
+.tab{
+    text-decoration: none;
+    color:rgb(224, 222, 222);
+}
+
+a:hover{
+    color: peru;
+    text-decoration: underline peru solid;
+}
+
+
+
+/*----------COMMON HEADER INFO END--------------------------------------------*/
+
+
+
+
+
+/*----------MAIN CONTENT--------------------------------------------*/
+
+
+
+#maincontent{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+
+}
+
+#videocontainer{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#video{
+border: 1px solid #222;
+border-radius: 5%;
+}
+
+
+#blogcontainer{
+    margin: 0;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-content: center;
+}
+
+#section{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    height: 100%;
+    flex-flow: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 20px 20px 20px;
+
+}
+
+.imagespace{
+
+    border-radius: 10%;
+    background-color: gray;
+    margin: 10px;
+    height: 450px;
+    width: 450px;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: end;
+
+}
+
+.image{
+    border-radius: 10%;
+}
+
+.image:hover{
+    border: 2px white solid;
+}
+
+
+
+.imagename{
+    width: 450px;
+    height: 50px;
+    transform: translate(0px,-50px);
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+/*------Footer Common Information-----------------------------------------*/
+#footer{
+    width: 100%;
+    height: 250px;
+    background-color: rgb(20,20,20);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#copyright{
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: gray 1px solid;
+}
+#crinfo{
+    margin: 0;
+    padding: 0;
+}
+
+#agreements{
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.headingagree{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+#socialfooter{
+    border-bottom: gray 1px solid;
+    height: 40px;
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+#footerinfo{
+    margin-top:0;
+    margin-bottom:0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+
+}
+
+
+/*------------------Media Query-------------------------------------*/
+
+
+@media (max-width:500px){
+
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        
+        text-align: center;
+    }
+
+    header{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    #sitename{
+        text-align: center;
+    }
+
+    #maincontent{
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    
+    }
+
+    #videocontainer{
+        height: 220px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #video{
+        height: 200px;
+    }
+    #navbar{
+       display: flex;
+       flex-direction: column;
+       flex-flow: column;
+
+       position:sticky;
+       top:62px;
+       flex-wrap: nowrap;
+       width: 100%;
+       height: 160px;
+       background-color: rgb(20,20,20);
+    }
+
+    #blogcontainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imagespace{
+        height: 300px;
+        width: 300px;
+    }
+
+    .image{
+        height: 300px;
+        width: 300px;   
+    }
+
+    #siten{
+        margin: 0;
+        position: sticky;
+        top:0;
+        background-color: rgb(20,20,20);
+        width: 100%;
+        height:60px;
+    }
+    
+    #sitename{
+        position: sticky;
+        top: 0px;
+        margin: 0;
+        width: 100%;
+        height:60px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        vertical-align: middle;
+        color: teal;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 34px;
+    }
+    
+    #whiteborder{
+        position: sticky;
+        top: 0px;
+        margin: 0;
+        width: 100%;
+        height:0px;
+        border-bottom: 2px rgb(202, 202, 202) solid;  
+    
+    }
+
+
+   }
+
+   @media (min-width:500px) and (max-width:768px){
+    #navbar{
+        position:fixed;
+        top:62px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: row;
+        width: 100%;
+        height: 50px;
+        background-color: rgb(20,20,20);
+    }
+
+    #maincontent{
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 120px;
+        margin-bottom: 20px;
+    
+    }
+   }
