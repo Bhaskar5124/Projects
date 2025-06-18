@@ -1,0 +1,1527 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    text-decoration: none;
+    color: rgb(22,88,142);
+}
+
+
+
+
+
+/*----------Header Info Start---------------------------------*/
+#header{
+    height: 60px;
+    width: 100%;
+    color: white;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+
+}
+
+
+#navbar{
+    text-align: right;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#sitenamebox{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 520px;
+}
+
+#logo{
+    margin-right: 10px;
+}
+
+#fname{
+    margin: 0;
+}
+
+#lname{
+    margin-left: 5px;
+}
+
+#sitename{
+    width: 300px;
+
+}
+
+#navbox{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0;
+
+}
+
+.navhead{
+    margin: 10px;
+}
+/*----------Header Info End---------------------------------*/
+
+
+
+
+
+
+/*----------Main Info Start---------------------------------*/
+body{
+    background-image: url("pics/codingb2.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+#main{
+    margin-top: 60px;
+
+}
+
+
+/*-------HOME START-------------------------------------------*/
+#home{
+margin-top:0px;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+width: 100%;
+}
+
+#homecontainer{
+height: 400px;
+width: 800px;
+display: flex;
+justify-content: space-between;
+background-color: rgb(224, 224, 224,0.9);
+border-radius: 20px;
+}
+
+#homecontainer:hover{
+    scale: 1.05;
+}
+
+
+#myimagebox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 350px;
+}
+
+#myimage{
+    border-radius: 50%;
+    margin: 20px;
+}
+
+#textbox{
+    height: 400px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#hello{
+    text-align: center;
+    color: rgb(158, 89, 19);
+
+}
+
+#name{
+    text-align: center;
+}
+
+#position{
+    text-align: center;
+    color: darkblue;
+}
+
+#para{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.button:hover{
+    background-color: black;
+    color: lightsalmon;
+    font-size: large;
+}
+
+.button{
+    margin: 20px;
+    font-weight: bolder;
+    font-size: 16px;
+    height: 40px;
+    width: 140px;
+    background-color:rgb(22,88,142);
+    color: white;
+}
+
+#socialhome{
+    margin: 20px;
+    height: 50px;
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.socialhometabs{
+    color: black;
+}
+
+.socialhometabs:hover{
+    font-size: larger;
+}
+/*-------HOME END---------------------------------*/
+
+
+
+
+
+
+/*-------SKILLS-------------------------------------*/
+#skills{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#skillcontainermain{
+    height: 500px;
+    width: 1200px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: row;
+    flex-wrap: wrap;
+    /*background-image: url(pics/personalb2.jpg);*/
+    background-color: rgb(48, 48, 48,0.9);
+    background-size: cover;
+    background-blend-mode: normal;
+
+}
+
+#techskills{
+    height: 100%;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.codeskills{
+    height: 60px;
+    width: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.codeimage{
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.codeimage:hover{
+    scale: 1.05 ;
+}
+
+.codelevel{
+    height: 50px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.codelevel:hover{
+    scale: 1.05;
+}
+
+.totalpercentage{
+    height: 20px;
+    width: 500px;
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+
+.skillpercentage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#html{
+    height: 20px;
+    width: 450px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: html;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes html{
+    0%{width: 0px;}
+    100%{width: 450px;}
+}
+
+#css{
+    height: 20px;
+    width: 425px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: css;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes css{
+    0%{width: 0px;}
+    100%{width: 425px;}
+}
+
+#js{
+    height: 20px;
+    width: 350px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: js;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes js{
+    0%{width: 0px;}
+    100%{width: 350px;}
+}
+
+#java{
+    height: 20px;
+    width: 400px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: java;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes java{
+    0%{width: 0px;}
+    100%{width: 400px;}
+}
+
+#python{
+    height: 20px;
+    width: 385px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: python;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes python{
+    0%{width: 0px;}
+    100%{width: 385px;}
+}
+
+#c{
+    height: 20px;
+    width: 360px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: c;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes c{
+    0%{width: 0px;}
+    100%{width: 360px;}
+}
+
+#tailwind{
+    height: 20px;
+    width: 435px;
+    background-color: rgb(22,88,142);
+    border-radius: 20px;
+    animation-name: tw;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes tw{
+    0%{width: 0px;}
+    100%{width: 435px;}
+}
+
+#personalskills{
+    height: 100%;
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.psebox{
+    height: 160px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.pse{
+    height: 160px;
+    width: 160px;
+    font-weight: bolder;
+    font-size: 20px;
+    background-color: rgb(22,88,142);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.pse:hover{
+    border: 2px black solid;
+    font-size: larger;
+}
+/*-------SKILLS ENDS---------------------------------*/
+
+
+
+
+
+
+/*-------PROJECTS START---------------------------------*/
+#projects{
+    height: 900px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: row;
+    flex-wrap: wrap;
+
+}
+
+.projectbox{
+    height: 300px;
+    width: 300px;
+    margin: 20px;
+}
+
+.projectbox:hover{
+    .projecthead{
+        margin-top: 10px;
+        transform: translate(0,-20px);
+        transition: 2s;
+        transition-timing-function: linear;
+        color: peru;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .projectimg{
+        height: 0px;
+        width: 0px;
+        border-radius: 20px;
+        transition: 1s;
+        transition-timing-function: linear;
+    }
+
+    .projectpara{
+        font-size: 16px;
+        text-align: center;
+        margin: 0px 10px 0px 10px;
+        color: white;
+    }
+
+    .pbutton:hover{
+        background-color: black;
+        color: lightsalmon;
+        font-size: large;
+    }
+    
+    .pbutton{
+        margin: 20px;
+        font-weight: bolder;
+        font-size: 16px;
+        height: 40px;
+        width: 140px;
+        background-color:rgb(22,88,142);
+        color: white;
+    }
+
+    .pbuttonbox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    background: linear-gradient(rgba(72,72,72,0.6), black); 
+    border-radius: 20px;
+}
+
+.projectimg{
+    border-radius: 20px;
+    margin-bottom: 6px;
+}
+
+.projecthead{
+    color: rgb(241,26,34);
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 2px black;
+}
+
+.projectpara{
+    font-size: 0;
+}
+
+
+.pbutton{
+    font-size: 0;
+    height: 0px;
+    width: 0px;
+
+}
+/*-------PROJECTS ENDS---------------------------------*/
+
+
+
+
+
+/*-------SERVICES START---------------------------------*/
+#services{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.servicebox{
+    height: 400px;
+    width: 350px;
+    background-color: rgb(26, 26, 26);
+    border-radius: 5%;
+    padding: 10px;
+}
+
+.servicebox:hover{
+    scale: 1.05;
+}
+
+.servicesign{
+    text-align: center;
+    margin-top: 20px;
+    color: gray;
+}
+
+.servicehead{
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: rgb(238, 150, 63);
+    font-size: 24px;
+    border-bottom: 2px solid gray;
+    /*text-shadow: 1px 1px 1px white;*/
+}
+
+.servicepara{
+    text-align: center;
+    color: white;
+}
+
+.buttonbox{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+/*-------SERVICES END---------------------------------*/
+
+
+
+
+/*-------ABOUT START---------------------------------*/
+#about{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutbox{
+    height: 400px;
+    width: 800px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: 20px;
+}
+
+#aboutbox:hover{
+    scale: 1.05;
+}
+
+#aboutimgbox{
+    height: 400px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#aboutimg{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#abouttextbox{
+    height: 400px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#aboutheader{
+    text-align: center;
+    margin: 20px 20px 10px 20px;
+    font-size: 26px;
+    font-weight: bolder;
+    color: darkblue;
+}
+
+#aboutpara{
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+    font-weight: bold;
+}
+/*-------ABOUT END---------------------------------*/
+
+
+
+
+/*-------CONTACT START---------------------------------*/
+#contact{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#contactbox{
+    margin-top: 50px;
+    height: 500px;
+    width: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.input{
+    height: 50px;
+    width: 250px;
+    font-size: 24px;
+    margin: 10px;
+    text-align: center;
+    color: peru;
+    background-color: black;
+}
+
+#query{
+    height: 200px;
+    width: 550px;
+    font-size: 24px;
+    text-align: center;
+    color: peru;
+    background-color: black;
+}
+/*-------CONTACT END---------------------------------*/
+
+
+
+
+/*----------MAIN Info End---------------------------------*/
+
+
+
+/*----------Footer Info Start---------------------------------*/
+#footer{
+    width: 100%;
+    height: 250px;
+    color: black;
+    background-color: rgb(195, 195, 195);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.footertab{
+color: black;
+}
+
+
+
+#copyright{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: black 1px solid;
+}
+#crinfo{
+    margin: 0;
+    padding: 0;
+}
+
+#agreements{
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.headingagree{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+#socialfooter{
+    border-bottom: black 1px solid;
+    height: 40px;
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+#footerinfo{
+    margin-top:0;
+    margin-bottom:0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+
+}
+/*----------Footer Info End---------------------------------*/
+
+
+
+/*----------MEDIA QUREY START---------------------------------*/
+@media (max-width:360px){
+    #header{
+        height: 240px;
+        width: 100%;
+        color: white;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: unset;
+    
+    }
+    
+    
+    #navbar{
+        text-align: center;
+        height: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    
+    #sitenamebox{
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    
+    #logo{
+        margin-right: 10px;
+    }
+    
+    #fname{
+        margin: 0;
+    }
+    
+    #lname{
+        margin-left: 5px;
+    }
+    
+    #sitename{
+        width: 300px;
+    
+    }
+    
+    #navbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    
+    }
+    
+    .navhead{
+        text-align: center;
+        margin: 5px;
+        border-top: 2px gray solid;
+    }
+
+    #main{
+        margin-top: 0px;
+    }
+
+    #home{
+        height: 700px;
+        width: 100%;
+    }
+
+    #homecontainer{
+        height: 500px;
+        width: 300px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: rgb(224, 224, 224,0.9);
+        border-radius: 5%;
+        }
+
+        #myimagebox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 250px;
+            width: 300px;
+        }
+        
+        #myimage{
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            margin: 20px;
+        }
+        
+        #textbox{
+            height: 300px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #hello{
+            text-align: center;
+            color: rgb(158, 89, 19);
+        
+        }
+        
+        #name{
+            text-align: center;
+        }
+        
+        #position{
+            text-align: center;
+            color: darkblue;
+        }
+        
+        #para{
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .button:hover{
+            background-color: black;
+            color: lightsalmon;
+            font-size: large;
+        }
+        
+        .button{
+            margin: 10px;
+            font-weight: bolder;
+            font-size: 16px;
+            height: 40px;
+            width: 140px;
+            background-color:rgb(22,88,142);
+            color: white;
+        }
+        
+        #socialhome{
+            margin: 5px;
+            height: 30px;
+            width: 200px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        
+        .socialhometabs{
+            color: black;
+        }
+        
+        .socialhometabs:hover{
+            font-size: larger;
+        }
+
+
+        #skills{
+            margin-top: 0;
+            height: 1800px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }
+        
+        #skillcontainermain{
+            height: 1700px;
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex-flow: column;
+            flex-wrap: nowrap;
+            /*background-image: url(pics/personalb2.jpg);*/
+            background-color: rgb(48, 48, 48,0.9);
+            background-size: cover;
+            background-blend-mode: normal;
+        
+        }
+        
+        #techskills{
+            height: 200px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        
+        .codeskills{
+            height: 50px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+        
+        .codeimage{
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            
+        }
+
+        .skillimg{
+            height: 30px;
+            width: 30px;
+        }
+        
+        .codeimage:hover{
+            scale: 1.05 ;
+        }
+        
+        .codelevel{
+            height: 30px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+        
+        .codelevel:hover{
+            scale: 1.05;
+        }
+        
+        .totalpercentage{
+            height: 20px;
+            width: 200px;
+            background-color: lightgrey;
+            border-radius: 20px;
+        }
+        
+        .skillpercentage{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        #html{
+            height: 20px;
+            width: 180px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: html;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes html{
+            0%{width: 0px;}
+            100%{width: 180px;}
+        }
+        
+        #css{
+            height: 20px;
+            width: 170px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: css;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes css{
+            0%{width: 0px;}
+            100%{width: 170px;}
+        }
+        
+        #js{
+            height: 20px;
+            width: 140px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: js;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes js{
+            0%{width: 0px;}
+            100%{width: 140px;}
+        }
+        
+        #java{
+            height: 20px;
+            width: 180px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: java;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes java{
+            0%{width: 0px;}
+            100%{width: 180px;}
+        }
+        
+        #python{
+            height: 20px;
+            width: 154px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: python;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes python{
+            0%{width: 0px;}
+            100%{width: 154px;}
+        }
+        
+        #c{
+            height: 20px;
+            width: 144px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: c;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes c{
+            0%{width: 0px;}
+            100%{width: 144px;}
+        }
+        
+        #tailwind{
+            height: 20px;
+            width: 174px;
+            background-color: rgb(22,88,142);
+            border-radius: 20px;
+            animation-name: tw;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes tw{
+            0%{width: 0px;}
+            100%{width: 174px;}
+        }
+        
+        #personalskills{
+            height: 1200px;
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .psebox{
+            margin: 10px;
+            height: 160px;
+            width: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+        
+        .pse{
+            height: 160px;
+            width: 160px;
+            font-weight: bolder;
+            font-size: 20px;
+            background-color: rgb(22,88,142);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+        
+        .pse:hover{
+            border: 2px black solid;
+            font-size: larger;
+        }
+
+        /*-------PROJECTS START---------------------------------*/
+#projects{
+    height: 2800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: column;
+    flex-wrap: wrap;
+
+}
+
+.projectbox{
+    height: 400px;
+    width: 320px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectbox:hover{
+    .projecthead{
+        margin-top: 10px;
+        transform: translate(0,-20px);
+        transition: 2s;
+        transition-timing-function: linear;
+        color: peru;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .projectimg{
+        height: 0px;
+        width: 0px;
+        border-radius: 20px;
+        transition: 1s;
+        transition-timing-function: linear;
+    }
+
+    .projectpara{
+        font-size: 16px;
+        text-align: center;
+        margin: 0px 10px 0px 10px;
+        color: white;
+    }
+
+    .pbutton:hover{
+        background-color: black;
+        color: lightsalmon;
+        font-size: large;
+    }
+    
+    .pbutton{
+        margin: 20px;
+        font-weight: bolder;
+        font-size: 16px;
+        height: 40px;
+        width: 140px;
+        background-color:rgb(22,88,142);
+        color: white;
+    }
+
+    .pbuttonbox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    background: linear-gradient(rgba(72,72,72,0.6), black); 
+    border-radius: 20px;
+}
+
+.projectimg{
+    border-radius: 20px;
+    margin-bottom: 6px;
+}
+
+.projecthead{
+    color: rgb(241,26,34);
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 2px black;
+}
+
+.projectpara{
+    font-size: 0;
+}
+
+
+.pbutton{
+    font-size: 0;
+    height: 0px;
+    width: 0px;
+
+}
+/*-------PROJECTS ENDS---------------------------------*/
+
+
+/*-------SERVICES START---------------------------------*/
+#services{
+    height: 1400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.servicebox{
+    height: 400px;
+    width: 300px;
+    background-color: rgb(26, 26, 26);
+    border-radius: 5%;
+    padding: 10px;
+}
+
+.servicebox:hover{
+    scale: 1.05;
+}
+
+.servicesign{
+    text-align: center;
+    margin-top: 20px;
+    color: gray;
+}
+
+.servicehead{
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: rgb(238, 150, 63);
+    font-size: 24px;
+    border-bottom: 2px solid gray;
+    /*text-shadow: 1px 1px 1px white;*/
+}
+
+.servicepara{
+    text-align: center;
+    color: white;
+}
+
+.buttonbox{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+/*-------SERVICES END---------------------------------*/
+
+/*-------ABOUT START---------------------------------*/
+#about{
+    height: 1000px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutbox{
+    height: 950px;
+    width: 800px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: 20px;
+}
+
+#aboutbox:hover{
+    scale: 1.05;
+}
+
+#aboutimgbox{
+    height: 300px;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#aboutimg{
+    height: 300px;
+    width: 220px;
+    border-radius: 10px;
+}
+
+#abouttextbox{
+    height: 600px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#aboutheader{
+    text-align: center;
+    margin: 20px 20px 10px 20px;
+    font-size: 26px;
+    font-weight: bolder;
+    color: darkblue;
+}
+
+#aboutpara{
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+    font-weight: bold;
+}
+/*-------ABOUT END---------------------------------*/
+
+/*-------CONTACT START---------------------------------*/
+#contact{
+    height: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#contactbox{
+    margin-top: 50px;
+    height: 500px;
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.input{
+    height: 50px;
+    width: 130px;
+    font-size: 20px;
+    margin: 5px;
+    text-align: center;
+    color: peru;
+    background-color: black;
+}
+
+#query{
+    height: 200px;
+    width: 300px;
+    font-size: 20px;
+    text-align: center;
+    color: peru;
+    background-color: black;
+}
+/*-------CONTACT END---------------------------------*/
+
+/*----------Footer Info Start---------------------------------*/
+#footer{
+    width: 100%;
+    height: 400px;
+    color: black;
+    background-color: rgb(195, 195, 195);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.footertab{
+color: black;
+}
+
+
+
+#copyright{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: black 1px solid;
+}
+#crinfo{
+    margin: 0;
+    padding: 0;
+}
+
+#agreements{
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.headingagree{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+#socialfooter{
+    border-bottom: black 1px solid;
+    height: 40px;
+    width: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+#footerinfo{
+    margin-top:0;
+    margin-bottom:0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+
+}
+/*----------Footer Info End---------------------------------*/
+}
+
+
+@media (min-width:500px) and (max-width:768px){
+    #skills{
+        height: 1800px;
+    }
+}
+
+
+
+
+
+
+/*----------MEDIA QUREY END---------------------------------*/
