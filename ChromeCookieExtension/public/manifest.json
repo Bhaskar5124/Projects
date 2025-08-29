@@ -1,0 +1,22 @@
+{
+    "manifest_version" : 3,
+    "name": "Cookies Insights",
+    "version" : "1.0",
+    "description": "Display site information and manages cookies",
+    "permissions" : [
+        "activeTab",
+        "storage"
+    ],
+    "optional_permissions": [
+    "cookies"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "action": {
+        "default_popup": "index.html"
+    },
+    "icons": {
+        "32": "icon32.png"
+    }
+}
